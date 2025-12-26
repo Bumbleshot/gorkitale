@@ -2,7 +2,10 @@
 
 A retro-style Linux operating system simulation and game built with Rust and Tetra.
 
-![Agalar Linux](https://github.com/ByCh4n-Group/agalar_vibecoded_game/raw/main/screenshot.png)
+<img width="800" height="632" alt="image" src="https://github.com/user-attachments/assets/3a240a19-ac6d-4652-87d2-9b260613fddf" />
+<img width="800" height="632" alt="image" src="https://github.com/user-attachments/assets/ecde34d1-4a8e-42d2-bba6-71ea7a30b298" />
+<img width="800" height="632" alt="image" src="https://github.com/user-attachments/assets/d3fa238b-617f-49b9-82f4-48d82d96e35f" />
+<img width="800" height="632" alt="image" src="https://github.com/user-attachments/assets/07b2d22a-731f-422e-be83-1ce848516a78" />
 
 ## Overview
 
