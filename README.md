@@ -2,6 +2,15 @@
 
 A retro-style Linux operating system simulation and game built with Rust and Tetra.
 
+TODO:
+- multi lang support for memes and the entire game for en and tr.
+- add put mechanism(idol statue).
+- tebliğ can make the characters Muslim(need muslim version of characters).
+- add kurban(adha) mechanism, (toriel; "anne keçi kurban edilecek").
+- add pray mechanism.
+- (idk but it's required)
+- the lore.
+
 | | | |
 |:---:|:---:|:---:|
 | <img width="100%" alt="image" src="https://github.com/user-attachments/assets/e5f8997f-7297-4ace-84d7-21c4eee3f7ef" /> | <img width="100%" alt="image" src="https://github.com/user-attachments/assets/b272ffd5-6580-478e-885d-b77ba425c696" /> | <img width="100%" alt="image" src="https://github.com/user-attachments/assets/d5d825dd-4db6-4f59-9aa2-29b7f6100f45" /> |
