@@ -12,6 +12,7 @@ pub struct User {
 
 pub struct SystemState {
     pub language: Language,
+    pub volume: f32,
     pub users: Vec<User>,
     pub current_user: Option<User>,
 }
@@ -44,7 +45,8 @@ impl SystemState {
         }
 
         Ok(Self {
-            language: Language::English,
+            language: Language::Turkish, // Default to Turkish
+            volume: 1.0,
             users,
             current_user: None,
         })

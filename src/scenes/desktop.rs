@@ -125,6 +125,7 @@ pub fn update(ctx: &mut Context, state: &mut GameState) -> tetra::Result {
                 if let Some(track) = &state.world.music_track {
                     if let Ok(instance) = track.play(ctx) {
                         instance.set_repeating(true);
+                        instance.set_volume(state.system.volume);
                         state.world.music_instance = Some(instance);
                         state.world.music_playing = true;
                     }

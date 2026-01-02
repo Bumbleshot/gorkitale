@@ -1,7 +1,8 @@
-use crate::defs::{Direction, Scene};
+use crate::defs::{Direction, Language, Scene};
 use crate::game_state::GameState;
 use crate::scenes::menu::MenuSubState;
 use crate::system::User;
+use crate::texts::TextResources;
 use rand::Rng;
 use tetra::Context;
 use tetra::Event;
@@ -70,6 +71,13 @@ fn handle_key_pressed(ctx: &mut Context, state: &mut GameState, key: Key) {
                             state.menu_state.selected_index = max_idx;
                         }
                     }
+                    MenuSubState::Settings => {
+                        if state.menu_state.selected_index > 0 {
+                            state.menu_state.selected_index -= 1;
+                        } else {
+                            state.menu_state.selected_index = 1; // 2 options (0, 1)
+                        }
+                    }
                     _ => {}
                 }
             }
@@ -93,13 +101,73 @@ fn handle_key_pressed(ctx: &mut Context, state: &mut GameState, key: Key) {
                             state.menu_state.selected_index = 0;
                         }
                     }
+                    MenuSubState::Settings => {
+                        if state.menu_state.selected_index < 1 {
+                            state.menu_state.selected_index += 1;
+                        } else {
+                            state.menu_state.selected_index = 0;
+                        }
+                    }
                     _ => {}
                 }
             }
         }
-        Key::Left | Key::Right => {
+        Key::Left => {
             if state.scene == Scene::KernelPanic {
                 state.game_over_state.selected_option = 1 - state.game_over_state.selected_option;
+            } else if state.scene == Scene::Menu && state.menu_state.sub_state == MenuSubState::Settings {
+                match state.menu_state.selected_index {
+                    0 => {
+                        // Language
+                        state.system.language = match state.system.language {
+                            Language::English => Language::Turkish,
+                            Language::Turkish => Language::English,
+                        };
+                        // Reload texts
+                        state.texts = match state.system.language {
+                            Language::English => TextResources::new_english(),
+                            Language::Turkish => TextResources::new_turkish(),
+                        };
+                        state.world.gaster_dialogues = state.texts.gaster_dialogues.clone();
+                    }
+                    1 => {
+                        // Volume
+                        state.system.volume = (state.system.volume - 0.1).max(0.0);
+                        if let Some(instance) = &mut state.world.music_instance {
+                            instance.set_volume(state.system.volume);
+                        }
+                    }
+                    _ => {}
+                }
+            }
+        }
+        Key::Right => {
+            if state.scene == Scene::KernelPanic {
+                state.game_over_state.selected_option = 1 - state.game_over_state.selected_option;
+            } else if state.scene == Scene::Menu && state.menu_state.sub_state == MenuSubState::Settings {
+                match state.menu_state.selected_index {
+                    0 => {
+                        // Language
+                        state.system.language = match state.system.language {
+                            Language::English => Language::Turkish,
+                            Language::Turkish => Language::English,
+                        };
+                        // Reload texts
+                        state.texts = match state.system.language {
+                            Language::English => TextResources::new_english(),
+                            Language::Turkish => TextResources::new_turkish(),
+                        };
+                        state.world.gaster_dialogues = state.texts.gaster_dialogues.clone();
+                    }
+                    1 => {
+                        // Volume
+                        state.system.volume = (state.system.volume + 0.1).min(1.0);
+                        if let Some(instance) = &mut state.world.music_instance {
+                            instance.set_volume(state.system.volume);
+                        }
+                    }
+                    _ => {}
+                }
             }
         }
         _ => {}

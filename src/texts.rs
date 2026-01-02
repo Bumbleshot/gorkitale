@@ -103,7 +103,6 @@ impl TextResources {
         }
     }
 
-    #[allow(dead_code)]
     pub fn new_english() -> Self {
         Self {
             combat_actions: CombatActionTexts {
@@ -129,7 +128,7 @@ impl TextResources {
                 ],
                 deccal: vec![
                     "You called him Antichrist.\n'One eye is enough' he said.".to_string(),
-                    "You called him Antichrist.\nHe pointed to his forehead.".to_string(),
+                    "You called him Antichrist.\nHe showed his forehead.".to_string(),
                     "You called him Antichrist.\n'Not time yet' he said.".to_string(),
                 ],
                 ebu_cehil: vec![
@@ -144,21 +143,21 @@ impl TextResources {
                 ],
             },
             gaster_dialogues: vec![
-                "darker darker yet darker...".to_string(),
-                "photon readings negative...".to_string(),
-                "this next experiment...".to_string(),
+                "dark darker yet darker...".to_string(),
+                "the man who speaks in hands...".to_string(),
+                "beware the man who came from the other world...".to_string(),
             ],
             game_over_messages: GameOverMessages {
                 teblig_high: vec![
                     "Your preaching was insufficient...".to_string(),
                     "You should have explained more.".to_string(),
                     "Your words did not reach hearts.".to_string(),
-                    "Guidance is from God, but you didn't try enough.".to_string(),
+                    "Guidance is from God but you didn't try enough.".to_string(),
                 ],
                 tekfir_high: vec![
-                    "You excommunicated everyone, now you are alone.".to_string(),
+                    "You declared everyone infidel, you are alone.".to_string(),
                     "Extremism finished you.".to_string(),
-                    "The sword of Takfir cut you too.".to_string(),
+                    "The sword of takfir cut you too.".to_string(),
                     "Even Kharijites would fear you.".to_string(),
                 ],
                 equal: vec![

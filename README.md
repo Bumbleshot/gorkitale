@@ -1,6 +1,6 @@
 # Gorkitale
 
-[![CI](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/ci.yml)
+[![CI](https://github.com/ByCh4n-Group/gorkitale/actions/workflows/ci.yml/badge.svg)](https://github.com/ByCh4n-Group/gorkitale/actions/workflows/ci.yml)
 
 A retro-style Linux operating system simulation and game built with Rust and Tetra.
 

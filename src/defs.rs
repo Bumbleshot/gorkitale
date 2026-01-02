@@ -16,6 +16,7 @@ pub enum Scene {
 #[derive(PartialEq, Clone, Copy, Debug)]
 pub enum Language {
     English,
+    Turkish,
 }
 
 #[derive(PartialEq, Clone, Copy)]

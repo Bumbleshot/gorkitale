@@ -105,11 +105,15 @@ impl GameState {
         boot_state.boot_text_cache.push(None);
 
         let mut world = WorldState::new();
-        // Initialize Gaster dialogues from texts
-        let texts = TextResources::new_turkish();
+        let system = SystemState::new(ctx)?;
+        
+        // Initialize texts based on language
+        let texts = match system.language {
+            crate::defs::Language::English => TextResources::new_english(),
+            crate::defs::Language::Turkish => TextResources::new_turkish(),
+        };
         world.gaster_dialogues = texts.gaster_dialogues.clone();
 
-        let system = SystemState::new(ctx)?;
         let mut menu_state = crate::scenes::menu::MenuState::new();
 
         // If no users, default to Create Save

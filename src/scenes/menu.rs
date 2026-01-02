@@ -38,6 +38,7 @@ pub struct ChaseEntity {
     pub pos: Vec2<f32>,
     pub velocity: Vec2<f32>,
     pub rotation: f32,
+    pub scale: f32,
     pub is_sans: bool,
 }
 
@@ -129,11 +130,13 @@ pub fn update(_ctx: &mut Context, state: &mut GameState) -> tetra::Result {
 
         let velocity = Vec2::new((dx / dist) * speed, (dy / dist) * speed);
         let rotation = dy.atan2(dx); // Calculate rotation based on velocity vector
+        let scale = rng.gen_range(0.7..1.3); // Random scale
 
         state.menu_state.chasers.push(ChaseEntity {
             pos: Vec2::new(x, y),
             velocity,
             rotation,
+            scale,
             is_sans,
         });
     }
@@ -185,6 +188,7 @@ pub fn draw(ctx: &mut Context, state: &mut GameState) -> tetra::Result {
                     .position(chaser.pos)
                     .origin(origin)
                     .rotation(chaser.rotation)
+                    .scale(Vec2::new(chaser.scale, chaser.scale))
                     .color(Color::rgba(1.0, 1.0, 1.0, 0.5)),
             );
         }
@@ -404,9 +408,36 @@ fn draw_settings(ctx: &mut Context, state: &mut GameState) -> tetra::Result {
             .scale(Vec2::new(1.5, 1.5)),
     );
 
-    let lang_text = format!("Language: {:?}", state.system.language);
-    let mut text = Text::new(lang_text, state.font.clone());
-    text.draw(ctx, DrawParams::new().position(Vec2::new(200.0, 200.0)));
+    let options = ["Language", "Volume"];
+    let start_y = 200.0;
+
+    for (i, opt) in options.iter().enumerate() {
+        let color = if i == state.menu_state.selected_index {
+            Color::rgb(1.0, 1.0, 0.0)
+        } else {
+            Color::WHITE
+        };
+
+        let prefix = if i == state.menu_state.selected_index {
+            "> "
+        } else {
+            "  "
+        };
+
+        let value = match i {
+            0 => format!("{:?}", state.system.language),
+            1 => format!("{:.0}%", state.system.volume * 100.0),
+            _ => "".to_string(),
+        };
+
+        let mut text = Text::new(format!("{}{}: < {} >", prefix, opt, value), state.font.clone());
+        text.draw(
+            ctx,
+            DrawParams::new()
+                .position(Vec2::new(200.0, start_y + (i as f32 * 40.0)))
+                .color(color),
+        );
+    }
 
     let mut hint = Text::new("Press Esc to go back", state.font.clone());
     hint.draw(
