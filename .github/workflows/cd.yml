@@ -26,6 +26,9 @@ jobs:
       - name: Build Release
         run: |
           export PKG_CONFIG_PATH=${{ steps.sdl.outputs.prefix }}/lib/pkgconfig:$PKG_CONFIG_PATH
+          export LIBRARY_PATH=${{ steps.sdl.outputs.prefix }}/lib:$LIBRARY_PATH
+          export LD_LIBRARY_PATH=${{ steps.sdl.outputs.prefix }}/lib:$LD_LIBRARY_PATH
+          export RUSTFLAGS="-L native=${{ steps.sdl.outputs.prefix }}/lib"
           make release-linux
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
